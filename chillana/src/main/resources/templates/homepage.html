@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Homepage</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${username}"></span>!</h1>
+<div th:if="${successMessage}">
+  <p th:text="${successMessage}"></p>
+</div>
+<div th:if="${errorMessage}">
+  <p th:text="${errorMessage}"></p>
+</div>
+<!-- Additional content here -->
+</body>
+</html>

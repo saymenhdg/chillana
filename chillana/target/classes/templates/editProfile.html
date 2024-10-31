@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/> <!-- Link to your CSS file -->
+</head>
+<body>
+<style>.edit-profile-container h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+textarea {
+    min-height: 80px;
+}
+
+input[type="file"] {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Edit Profile Link */
+.edit-profile-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-profile-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.edit-profile-link a:hover {
+    text-decoration: underline;
+}</style>
+
+<form action="@{/profile/edit/{userId}(userId=${userProfile.profileId})}" method="post" th:object="${userProfile}" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{profileId}"/>
+    <input type="hidden" th:field="*{user.id}"/>
+
+    <label for="bio">Bio:</label>
+    <input type="text" id="bio" th:field="*{bio}"/>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" th:field="*{location}"/>
+
+    <label for="profileImage">Profile Image:</label>
+    <input type="file" id="profileImage" name="profileImage"/>
+
+    <label for="backgroundImage">Background Image:</label>
+    <input type="file" id="backgroundImage" name="backgroundImage"/>
+
+    <button type="submit">Update Profile</button>
+</form>
+
+
+
+</div>
+
+</body>
+</html>

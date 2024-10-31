@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<div class="profile-container">
+    <!-- Background Image -->
+    <div class="background-image"
+         th:style="${userProfile.backgroundImage != null} ? 'background-image: url(' + @{${userProfile.backgroundImage}} + ')' : 'background-image: url(/images/default-bg.jpg)'">
+    </div>
+
+    <div class="profile-details">
+        <!-- Profile Image with Fallback -->
+        <img th:if="${userProfile.profileImage != null}" th:src="@{${userProfile.profileImage}}" alt="Profile Image" class="profile-image"/>
+        <img th:if="${userProfile.profileImage == null}" th:src="@{/images/default-profile.png}" alt="Default Profile Image" class="profile-image"/>
+
+        <!-- User Information -->
+        <h2 th:text="${userProfile.user != null ? userProfile.user.firstName + ' ' + userProfile.user.lastName : 'User Name'}">User Name</h2>
+        <p><strong>Location:</strong> <span th:text="${userProfile.location != null ? userProfile.location : 'No location set'}">Location</span></p>
+        <p><strong>Bio:</strong> <span th:text="${userProfile.bio != null ? userProfile.bio : 'No bio available'}">User Bio</span></p>
+    </div>
+    <div class="update-profile">
+        <a th:href="@{/profile/edit/{userId}(userId=${userProfile.user.id})}" class="update-button">Update Profile</a>
+
+    </div>
+</div>
+</body>
+</html>
+
